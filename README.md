@@ -13,6 +13,7 @@ This folder contains matlab code used to process the drifter datasets and produc
     - `COMP_DriftersInOut` computes, using the previous results, the drifters crossing onto / away from the shelf
     - `COMP_Pathways` computes the connectivity between different regions of the shelf to define typical pathways for drifters
  - `PLOT/` allows to plot the different figures. The PLOT scripts can be used in any order / independantly of each other, after having run the computation scripts
+ - 'DATA/` contains the subsets of publicly available datasets used for this study. The scripts can run directly using these datasets.
 
 ## Used datasets
 - GDP drifter dataset, 6h interpolated from January 1990 to May 2023 (Lumpkin and Centurioni, 2019). Available at https://www.aoml.noaa.gov/phod/gdp/index.php, accessed [2023-10-12] . We used the ASCII files, updated through May 2023. 
