@@ -17,7 +17,7 @@ This folder contains matlab code used to process the drifter datasets and produc
 
 ## Used datasets
 - GDP drifter dataset, 6h interpolated from January 1990 to May 2023 (Lumpkin and Centurioni, 2019). Available at https://www.aoml.noaa.gov/phod/gdp/index.php, accessed [2023-10-12] . We used the ASCII files, updated through May 2023. 
-- EGC-DrIFT dataset, 6h interpolated SVP drifters. Available on the NIOZ dataverse repository : https://doi.org/10.25850/nioz/7b.b.ff (Duyck et al 2023)
+- EGC-DrIFT dataset, 6h interpolated SVP drifters. Available on the NIOZ dataverse repository : https://doi.org/10.25850/nioz/7b.b.ff (Duyck and De Jong, 2023)
 - ETOPO2022 60 arc-second ice surface elevation, available at https://doi.org/10.25921/fd45-gt74 (NOAA, 2022)
 
 For each dataset, the version and subset used can be found in the data folder and is directly usable by the Matlab scripts
