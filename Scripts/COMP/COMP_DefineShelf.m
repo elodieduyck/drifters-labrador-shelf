@@ -40,7 +40,7 @@ shelf_km=shelf_5km;
 pts_shelf=shelf_gr_5km;
 shelf_poly=[pts_shelf [-80 -50 -30 -30 ;35 35 35 60] shelf_gr_5km(:,1)]; 
 
-clear shelf_5km shelf_gr shelf_gr_xy windowSize id_vert max_vert id_vertmax shelfs shelf_gr_1km shelf_gr_sm shelf_1km
+clear shelf_5km shelf_gr shelf_gr_xy windowSize id_vert max_vert id_vertmax shelfs shelf_gr_1km shelf_gr_sm shelf_1km shelf_gr_5km
 
 % % Test plot the shelf boundary and the polygon
 figure
