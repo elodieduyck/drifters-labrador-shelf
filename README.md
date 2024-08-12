@@ -1,5 +1,6 @@
-# Drifters Labrador Shelf
-This folder contains matlab code used to process the drifter datasets and produce the figures used in the paper. It also contains a data folder with the subsets of the different datasets used in the paper.
+# Code - Circulation of Baffin Bay and Hudson Bay waters on the Labrador Shelf and into the subpolar North Atlantic
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13255612.svg)](https://doi.org/10.5281/zenodo.13255612) \
+This folder contains matlab code used to process the drifter datasets and produce the figures used in the paper. It also contains a data folder with the subsets of the different datasets used in the paper. \
 
 ## Files
 - `STARTWITHME.m` sets the file paths used in the rest of the code.
