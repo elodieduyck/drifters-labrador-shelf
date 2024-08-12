@@ -91,7 +91,7 @@ drift_sel=cell2mat(res.fateid(39));
 drift_sel=drift_sel(ismember(cell2mat(res.fateid(39)),cell2mat(res.originid(39))));
 
 colmap=lines(1);
-figure
+fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
@@ -109,7 +109,7 @@ m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','f
 title(sprintf('%1.0f out of %1.0f drifters',k,length(drift_sel)),'fontsize',15)
 
 k=0;
-figure
+fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
@@ -127,7 +127,7 @@ m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','f
 title(sprintf('%1.0f out of %1.0f drifters',k,length(drift_sel)),'fontsize',15)
 
 k=0;
-figure
+fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
@@ -146,4 +146,4 @@ m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','f
 m_plot(drift_lon(:,[1992 1951]),drift_lat(:,[1992 1951]),'color',colmap(1,:),'linewidth',1.1)
 title(sprintf('%1.0f out of %1.0f drifters',k,length(drift_sel)),'fontsize',15)
 
-clear max_dist_sh shelf_km_100 i k lim1 lim2 drift_sel colmap shelf_km_2500 shelf_poly_2500 shelf_km_drift_2500 pts_shelf_2500 dist_shelf_2500
+clear max_dist_sh shelf_km_100 i k lim1 lim2 drift_sel colmap shelf_km_2500 shelf_poly_2500 shelf_km_drift_2500 pts_shelf_2500 dist_shelf_2500 fig

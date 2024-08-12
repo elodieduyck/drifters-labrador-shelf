@@ -3,3 +3,6 @@
 Figures/*
 Data/drifter_data_SVP_6h.mat
 Data/drifter_data_SVP_6h_nofilt.mat
+ZenodoArchive/
+*.docx
+*.pdf

@@ -47,8 +47,6 @@ figure
 hold on
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.7 .7 .7]);
 m_contour(lonT,latT,topoT,[-5000 -2000 -1000 -500 -200 0],'edgecolor',[.7 .7 .7]);
-% m_plot(shelf_gr(1,:),shelf_gr(2,:),'.b');
-% m_plot(shelf_gr2(1,:),shelf_gr2(2,:),'.g');
-m_plot(shelf_gr_5km(1,:),shelf_gr_5km(2,:),'.r');
+m_plot(pts_shelf(1,:),pts_shelf(2,:),'.b');
 m_plot(shelf_poly(1,:),shelf_poly(2,:),'r');
 m_grid

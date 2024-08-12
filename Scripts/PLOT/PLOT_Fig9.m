@@ -19,7 +19,7 @@ shelf_km_100=shelf_km_drift;
 shelf_km_100(dist_shelf>100 | dist_shelf<-100)=NaN;
 max_dist_sh=nanmax(shelf_km_100,[],1);
 
-figure
+fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
@@ -35,7 +35,7 @@ m_plot(pts_shelf(1,shelf_km==lim1),pts_shelf(2,shelf_km==lim1),'*k','MarkerSize'
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 title(sprintf('%1.0f out of %1.0f drifters',k,length(cell2mat(res.fateid(35)))),'fontsize',15) 
 
-figure
+fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
@@ -52,7 +52,7 @@ m_plot(pts_shelf(1,shelf_km==lim2),pts_shelf(2,shelf_km==lim2),'*k','MarkerSize'
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 title(sprintf('%1.0f out of %1.0f drifters',k,length(cell2mat(res.fateid(35)))),'fontsize',15)
 
-figure
+fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
@@ -70,7 +70,7 @@ m_plot(pts_shelf(1,shelf_km==lim3),pts_shelf(2,shelf_km==lim3),'*k','MarkerSize'
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 title(sprintf('%1.0f out of %1.0f drifters',k,length(cell2mat(res.fateid(35)))),'fontsize',15)
 
-figure
+fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
@@ -88,5 +88,5 @@ m_plot(pts_shelf(1,shelf_km==lim3),pts_shelf(2,shelf_km==lim3),'*k','MarkerSize'
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 title(sprintf('%1.0f out of %1.0f drifters',k,length(cell2mat(res.fateid(35)))),'fontsize',15)
 
-clear shelf_km_100 max_dist_sh i j k i_ex lim1 lim2 lim3 colmap
+clear shelf_km_100 max_dist_sh i j k i_ex lim1 lim2 lim3 colmap fig
 
