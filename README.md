@@ -1,6 +1,9 @@
 # Code - Circulation of Baffin Bay and Hudson Bay waters on the Labrador Shelf and into the subpolar North Atlantic
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13255612.svg)](https://doi.org/10.5281/zenodo.13255612) \
-This folder contains matlab code used to process the drifter datasets and produce the figures used in the paper. It also contains a data folder with the subsets of the different datasets used in the paper. \
+This folder contains matlab code used to process the drifter datasets and produce the figures used in :   
+Duyck, E., Foukal, N. P., and Frajka-Williams, E.: Circulation of Baffin Bay and Hudson Bay waters on the Labrador Shelf and into the subpolar North Atlantic, EGUsphere [preprint], https://doi.org/10.5194/egusphere-2024-2541, 2024.   
+  
+It also contains a data folder with the subsets of the different datasets used in the paper.  
 
 ## Files
 - `STARTWITHME.m` sets the file paths used in the rest of the code.
