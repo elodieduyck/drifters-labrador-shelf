@@ -40,9 +40,9 @@ fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 hold on
 m_pcolor(xmid-1/6,ymid-1/12,mz_speed) % adjust to have coordinates at the center of colored pixel, not at south west edge
 m_quiver(Xmid,Ymid,mz_u,mz_v,'k')
-m_contour(lonT,latT,topoT,[-2000 -1000 -250],'edgecolor',[.95 .95 .95],'linewidth',1.5);
+m_contour(lonT,latT,topoT,[-2500 -1000 -250],'edgecolor',[.95 .95 .95],'linewidth',1.5);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.7 .7 .7]);
-colormap lansey
+colormap(lansey(12))
 caxis([0 60])
 m_grid('xtick',-80:10:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 
@@ -65,9 +65,9 @@ figure
 hold on
 m_pcolor(xmid-1/6,ymid-1/12,mz_speed) % adjust to have coordinates at the center of colored pixel, not at south west edge
 m_quiver(Xmid,Ymid,mz_u*arrowscale,mz_v*arrowscale,'k','AutoScale','Off')
-m_contour(lonT,latT,topoT,[-2000 -1000 -250],'edgecolor',[.95 .95 .95],'linewidth',1.5);
+m_contour(lonT,latT,topoT,[-2500 -1000 -250],'edgecolor',[.95 .95 .95],'linewidth',1.5);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.7 .7 .7]);
-colormap lansey
+colormap(lansey(12))
 caxis([0 60])
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 
@@ -90,16 +90,16 @@ figure
 hold on
 m_pcolor(xmid-1/6,ymid-1/12,mz_speed) % adjust to have coordinates at the center of colored pixel, not at south west edge
 m_quiver(Xmid,Ymid,mz_u*arrowscale,mz_v*arrowscale,'k','AutoScale','Off')
-m_contour(lonT,latT,topoT,[-2000 -1000 -250],'edgecolor',[.95 .95 .95],'linewidth',1.5);
+m_contour(lonT,latT,topoT,[-2500 -1000 -250],'edgecolor',[.95 .95 .95],'linewidth',1.5);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.7 .7 .7]);
-colormap lansey
+colormap(lansey(12))
 caxis([0 60])
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 
 %% colmap
 
 fig=figure('units','normalized','outerposition',[0 0 .5 .5]);
-colormap lansey
+colormap(lansey(12))
 caxis([0 60])
 colorbar('Location','south','FontSize',15);
 axis off

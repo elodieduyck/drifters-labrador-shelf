@@ -1,29 +1,33 @@
 %% Figure 10 Fate of exported waters
-% Heat map of export
+% Heat map of exportshelf_gr_1km
 
 %% Flemish Pass
 k=0;
 m_proj('lambert','long',[-69 -20],'lat',[40 69]);
-drift_sel=cell2mat(res.fateid(35));
+
+% Select drifters coming from the southern labrador shelf boxes, that
+% crossed Flemish Pass
+drift_sel_FP=cell2mat(res.fateid(47));
+drift_sel_FP=drift_sel_FP(ismember(cell2mat(res.fateid(47)),cell2mat(res.originid(47))) | ismember(cell2mat(res.fateid(47)),cell2mat(res.originid(44))));
 
 % Select drifter coordinates before and after reaching Flemish Pass
 sel_lon_in=[];
 sel_lat_in=[];
 sel_lon_out=[];
 sel_lat_out=[];
-for i=1:length(drift_sel)
-    cross_time=trapped_time_enter(9,drift_sel(i)); % Flemish Pass box
-    sel_lon_in=[sel_lon_in drift_lon(cross_time-1460:cross_time,drift_sel(i))];
-    sel_lat_in=[sel_lat_in drift_lat(cross_time-1460:cross_time,drift_sel(i))];
+for i=1:length(drift_sel_FP)
+    cross_time=trapped_time_enter(10,drift_sel_FP(i)); % Flemish Pass box 10
+    sel_lon_in=[sel_lon_in drift_lon(cross_time-1460:cross_time,drift_sel_FP(i))];
+    sel_lat_in=[sel_lat_in drift_lat(cross_time-1460:cross_time,drift_sel_FP(i))];
 
     % And where do they go?
     if cross_time+1460<=length(drift_lon)
-        sel_lon_out=[sel_lon_out drift_lon(cross_time:cross_time+1460,drift_sel(i))];
-        sel_lat_out=[sel_lat_out drift_lat(cross_time:cross_time+1460,drift_sel(i))];
+        sel_lon_out=[sel_lon_out drift_lon(cross_time:cross_time+1460,drift_sel_FP(i))];
+        sel_lat_out=[sel_lat_out drift_lat(cross_time:cross_time+1460,drift_sel_FP(i))];
     else
-        fill_nans=nan(1461-length(drift_lon(cross_time:end,drift_sel(i))),1);
-        sel_lon_out=[sel_lon_out [drift_lon(cross_time:end,drift_sel(i));fill_nans]];
-        sel_lat_out=[sel_lat_out [drift_lat(cross_time:end,drift_sel(i));fill_nans]];
+        fill_nans=nan(1461-length(drift_lon(cross_time:end,drift_sel_FP(i))),1);
+        sel_lon_out=[sel_lon_out [drift_lon(cross_time:end,drift_sel_FP(i));fill_nans]];
+        sel_lat_out=[sel_lat_out [drift_lat(cross_time:end,drift_sel_FP(i));fill_nans]];
     end
 
 end
@@ -31,7 +35,7 @@ end
 fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 ax1=axes
 % Bin coordinates before reaching Flemish Pass
-[mat,xmid,ymid]=twodhist(sel_lon_in,sel_lat_in,[-70:1:0],[40:1/2:70]);
+[mat,xmid,ymid]=twodhist(sel_lon_in,sel_lat_in,[-70:1:0],[35:1/2:70]);
 mat=mat./sum(sum(mat))*100; % Percentage of data
 mat(mat==0)=NaN;
 m_pcolor(xmid,ymid,mat)
@@ -40,7 +44,7 @@ caxis([0 .7])
 m_grid('xtick',-80:10:20,'ytick',40:10:85,'tickdir','in','yaxislocation','left','fontsize',15)
 ax2=axes
 % Bin coordinates after reaching Flemish Pass
-[mat,xmid,ymid]=twodhist(sel_lon_out,sel_lat_out,[-70:1:0],[40:1/2:70]);
+[mat,xmid,ymid]=twodhist(sel_lon_out,sel_lat_out,[-70:1:0],[35:1/2:70]);
 mat=mat./sum(sum(mat))*100; % Percentage of data
 mat(mat==0)=NaN;
 m_pcolor(xmid,ymid,mat)
@@ -60,24 +64,29 @@ title('Origin and fate of Flemish Pass drifters','FontSize',15);
 
 k=0;
 m_proj('lambert','long',[-69 -20],'lat',[40 69]);
-drift_sel=cell2mat(res.fateid(39));
+
+% Select drifters coming from the southern labrador shelf boxes, that
+% crossed Flemish Cap
+drift_sel_FC=cell2mat(res.fateid(46));
+drift_sel_FC=drift_sel_FC(ismember(cell2mat(res.fateid(46)),cell2mat(res.originid(46))) | ismember(cell2mat(res.fateid(46)),cell2mat(res.originid(43))));
+
 sel_lon_in=[];
 sel_lat_in=[];
 sel_lon_out=[];
 sel_lat_out=[];
-for i=1:length(drift_sel)
-    cross_time=trapped_time_enter(10,drift_sel(i));
-    sel_lon_in=[sel_lon_in drift_lon(cross_time-1460:cross_time,drift_sel(i))];
-    sel_lat_in=[sel_lat_in drift_lat(cross_time-1460:cross_time,drift_sel(i))];
+for i=1:length(drift_sel_FC)
+    cross_time=trapped_time_enter(9,drift_sel_FC(i)); % Flemish Cap,box 9
+    sel_lon_in=[sel_lon_in drift_lon(cross_time-1460:cross_time,drift_sel_FC(i))];
+    sel_lat_in=[sel_lat_in drift_lat(cross_time-1460:cross_time,drift_sel_FC(i))];
 
     % And where do they go?
     if cross_time+1460<=length(drift_lon)
-        sel_lon_out=[sel_lon_out drift_lon(cross_time:cross_time+1460,drift_sel(i))];
-        sel_lat_out=[sel_lat_out drift_lat(cross_time:cross_time+1460,drift_sel(i))];
+        sel_lon_out=[sel_lon_out drift_lon(cross_time:cross_time+1460,drift_sel_FC(i))];
+        sel_lat_out=[sel_lat_out drift_lat(cross_time:cross_time+1460,drift_sel_FC(i))];
     else
-        fill_nans=nan(1461-length(drift_lon(cross_time:end,drift_sel(i))),1);
-        sel_lon_out=[sel_lon_out [drift_lon(cross_time:end,drift_sel(i));fill_nans]];
-        sel_lat_out=[sel_lat_out [drift_lat(cross_time:end,drift_sel(i));fill_nans]];
+        fill_nans=nan(1461-length(drift_lon(cross_time:end,drift_sel_FC(i))),1);
+        sel_lon_out=[sel_lon_out [drift_lon(cross_time:end,drift_sel_FC(i));fill_nans]];
+        sel_lat_out=[sel_lat_out [drift_lat(cross_time:end,drift_sel_FC(i));fill_nans]];
     end
 
 end
@@ -125,8 +134,8 @@ axis off
 %% Compute how many days it takes for drifters to reach 30W after crossing
 % Flemish Pass
 days_FPto30W=[];
-for i=cell2mat(res.fateid(35))
-    cross_time=trapped_time_enter(9,i);
+for i=drift_sel_FP
+    cross_time=trapped_time_enter(10,i);
     days_FPto30W=[days_FPto30W find(drifter_data_SVP.Longitude(cross_time:end,i)>-30,1,'first')./4];
 end
 sprintf('Media number of days from Flemish Pass to 30W: %1.0f',median(days_FPto30W))
@@ -135,11 +144,11 @@ sprintf('Media number of days from Flemish Pass to 30W: %1.0f',median(days_FPto3
 
 % Flemish Cap
 days_FCto30W=[];
-for i=cell2mat(res.fateid(39))
-    cross_time=trapped_time_enter(10,i);
+for i=drift_sel_FC
+    cross_time=trapped_time_enter(9,i);
     days_FCto30W=[days_FCto30W find(drifter_data_SVP.Longitude(cross_time:end,i)>-30,1,'first')./4];
 end
 sprintf('Media number of days from Flemish Cap to 30W: %1.0f',median(days_FCto30W))
 
 
-clear cross_time drift_sel sel_lon_in sel_lon_out sel_lat_in sel_lat_out mat xmid ymid ax1 ax2 fig fill_nans
+clear cross_time drift_sel_FC drift_sel_FP sel_lon_in sel_lon_out sel_lat_in sel_lat_out mat xmid ymid ax1 ax2 fig fill_nans

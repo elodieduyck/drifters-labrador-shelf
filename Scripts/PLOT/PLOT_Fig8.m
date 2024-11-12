@@ -23,7 +23,7 @@ for j=1:nb_origin
     for k=1:nb_fate
         trap_fate=find(trap_section==serie_2,1,'first')+k-1;
         drift_id=res.pathid(res.origin==trap_origin & res.fate==trap_fate);
-        m_plot(drift_lon(:,cell2mat(drift_id)),drift_lat(:,cell2mat(drift_id)),'color',brighten(colmap(k+col_start,:),+0.5), 'linewidth',1.2);
+        m_plot(drift_lon(:,cell2mat(drift_id)),drift_lat(:,cell2mat(drift_id)),'color',brighten(colmap(k+col_start,:),+0.5), 'linewidth',1.5);
     end
 
     % plot shelf boundary and boxes

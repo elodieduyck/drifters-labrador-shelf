@@ -6,6 +6,8 @@
 m_proj('lambert','long',[-60 -40],'lat',[39.5 52]);
 colmap=lines(2);
 
+drift_sel_FP=cell2mat(res.fateid(47));
+
 % Limits along the shelf used to show where drifters get out
 lim1=4000;
 lim2=4300;
@@ -24,7 +26,7 @@ k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
-for i=cell2mat(res.fateid(35)) % drifters that passed through Flemish Pass
+for i=drift_sel_FP % drifters that passed through Flemish Pass
     if max_dist_sh(i)<lim1
         m_plot(drift_lon(:,i),drift_lat(:,i),'color',[.7 .9 1],'linewidth',1.1)
         k=k+1;
@@ -33,14 +35,14 @@ end
 m_plot(drift_lon(:,[772 646 1872]),drift_lat(:,[772 646 1872]),'color',colmap(1,:),'linewidth',1.1)
 m_plot(pts_shelf(1,shelf_km==lim1),pts_shelf(2,shelf_km==lim1),'*k','MarkerSize',4)
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
-title(sprintf('%1.0f out of %1.0f drifters',k,length(cell2mat(res.fateid(35)))),'fontsize',15) 
+title(sprintf('%1.0f out of %1.0f drifters',k,length(drift_sel_FP)),'fontsize',15) 
 
 fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
-for i=cell2mat(res.fateid(35))
+for i=drift_sel_FP
     if max_dist_sh(i)>=lim1 && max_dist_sh(i)<lim2
         m_plot(drift_lon(:,i),drift_lat(:,i),'color',[.7 .9 1],'linewidth',1.1)
         k=k+1;
@@ -50,14 +52,14 @@ m_plot(drift_lon(:,[2196 886 1879]),drift_lat(:,[2196 886 1879]),'color',colmap(
 m_plot(pts_shelf(1,shelf_km==lim1),pts_shelf(2,shelf_km==lim1),'*k','MarkerSize',4)
 m_plot(pts_shelf(1,shelf_km==lim2),pts_shelf(2,shelf_km==lim2),'*k','MarkerSize',4)
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
-title(sprintf('%1.0f out of %1.0f drifters',k,length(cell2mat(res.fateid(35)))),'fontsize',15)
+title(sprintf('%1.0f out of %1.0f drifters',k,length(drift_sel_FP)),'fontsize',15)
 
 fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
-for i=cell2mat(res.fateid(35))
+for i=drift_sel_FP
     if max_dist_sh(i)>=lim2 && max_dist_sh(i)<lim3
         m_plot(drift_lon(:,i),drift_lat(:,i),'color',[.7 .9 1],'linewidth',1.1)
         k=k+1;
@@ -68,14 +70,14 @@ m_plot(pts_shelf(1,shelf_km==lim1),pts_shelf(2,shelf_km==lim1),'*k','MarkerSize'
 m_plot(pts_shelf(1,shelf_km==lim2),pts_shelf(2,shelf_km==lim2),'*k','MarkerSize',4)
 m_plot(pts_shelf(1,shelf_km==lim3),pts_shelf(2,shelf_km==lim3),'*k','MarkerSize',4)
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
-title(sprintf('%1.0f out of %1.0f drifters',k,length(cell2mat(res.fateid(35)))),'fontsize',15)
+title(sprintf('%1.0f out of %1.0f drifters',k,length(drift_sel_FP)),'fontsize',15)
 
 fig=figure('units','normalized','outerposition',[0 0 .5 1]);
 k=0;
 hold on
 m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.7 .7 .7],'linewidth',1);
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
-for i=cell2mat(res.fateid(35))
+for i=drift_sel_FP
     if max_dist_sh(i)>=lim3
         m_plot(drift_lon(:,i),drift_lat(:,i),'color',[.7 .9 1],'linewidth',1.1)
         k=k+1;
@@ -86,7 +88,7 @@ m_plot(pts_shelf(1,shelf_km==lim1),pts_shelf(2,shelf_km==lim1),'*k','MarkerSize'
 m_plot(pts_shelf(1,shelf_km==lim2),pts_shelf(2,shelf_km==lim2),'*k','MarkerSize',4)
 m_plot(pts_shelf(1,shelf_km==lim3),pts_shelf(2,shelf_km==lim3),'*k','MarkerSize',4)
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
-title(sprintf('%1.0f out of %1.0f drifters',k,length(cell2mat(res.fateid(35)))),'fontsize',15)
+title(sprintf('%1.0f out of %1.0f drifters',k,length(drift_sel_FP)),'fontsize',15)
 
 clear shelf_km_100 max_dist_sh i j k i_ex lim1 lim2 lim3 colmap fig
 

@@ -1,37 +1,78 @@
 %% Pathways
 
-% Define the 5 sections and 10 boxes used to identify pathways
-%% Now making it more legible by keeping only 1 decimal. Will need to check for possible changes
+% Define the 5 sections and 11 boxes used to identify pathways
 
-trap_DS=[  -61.99  -56.01  -55.9991  -61.98  -61.99
-   66.64   66.99   66.80   66.48   66.64];
+% Here is the tool used to define the section
+% Draw detailed map of subregion
+% color=lines(3)
+% m_proj('lambert','long',[-60 -40],'lat',[46 53]);
+% figure
+% hold on
+% [CS,CH]=m_contourf(lonT,latT,topoT,[-6000 -3500 -2500 -1500 -1000 0],'edgecolor','none');
+% m_contour(lonT,latT,topoT,[-3500 -3000 -2500 -2000 -1500 -1000 -500 -250 -100 0],'edgecolor',[.7 .7 .7]);
+% m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
+% m_plot(pts_shelf(1,:),pts_shelf(2,:),'color',brighten(color(2,:),0.5),'linewidth',2);
+% colormap(m_colmap('blues',10))
+% c=colorbar('location','southoutside','FontSize',15);
+% c.Label.String='Depth (km)';
+% caxis([-4000 0])
+% m_plot(squeeze(trap_boxes(1,:,:)),squeeze(trap_boxes(2,:,:)))
+% m_grid('xtick',-80:1:20,'ytick',40:1:85,'tickdir','in','yaxislocation','left','fontsize',15)
+% 
+% % Make circle at shelfbreak where applicable 
+% [xc,yc]=ginput(1);
+% [xc,yc]=m_xy2ll(xc,yc);
+% m_plot(xc,yc,'.y')
+% m_range_ring(xc,yc,100,'color','y')
+% 
+% % Draw boxes
+% x=[];
+% y=[];
+% for i=1:4
+% [xt,yt]=ginput(1);
+% plot(xt,yt,'.b')
+% x=[x xt];
+% y=[y yt];
+% plot(x,y,'b')
+% end
+% x=[x x(1)];
+% y=[y y(1)];
+% plot(x,y,'r')
+% [xl,yl]=m_xy2ll(x,y);
+% clear x y
 
-trap_NorthLsh_1=[ -64.80  -62.48  -62.26  -64.68  -64.80
-   60.30   61.50   61.33   60.17   60.30];
-trap_NorthLsh_2=[  -62.48  -60.06  -60.14  -62.26  -62.48
-   61.48   61.39   61.21  61.33   61.48];
+trap_DS=[  -62.2 -56.6 -56.4 -62 -62.2;
+    66.5 67.2 67 66.3 66.5];
+trap_WGC=[ -50.3 -53.1 -52.8 -50 -50.3; 
+     63 62 61.8 62.8 63];
 
-trap_MidLsh_1=[ -60.49  -58.33  -58.19  -60.34  -60.49
-   55.49   56.22   56.12   55.39   55.49];
-trap_MidLsh_2=[ -58.33  -57.19  -57.05  -58.19  -58.33
-   56.22  56.58   56.45   56.12   56.22];
+trap_NLsh_sh=[ -64.5  -62  -62  -64.5  -64.5;
+   60.5 61.7 61.3 60.1 60.5];
+trap_NLsh_sl=[  -62 -58.8 -58.8 -62 -62;
+    61.7 61.3 60.9 61.3 61.7];
 
-trap_SouthLsh_1=[ -55.88  -52.85  -52.77  -55.81  -55.88
-   52.10   52.76   52.60   52   52.10];
-trap_SouthLsh_2=[ -52.85  -50.34  -50.22  -52.75  -52.85
-   52.76   53.28   53.15   52.61   52.76];
+trap_MLsh_sh=[ -60.5  -58.4  -58.2  -60.3  -60.5;
+   55.6   56.3   56.1   55.4   55.6];
+trap_MLsh_sl=[ -58.4  -56.3  -56.1  -58.2  -58.4;
+   56.3 56.9 56.7 56.1 56.3];
 
-trap_NL_1=[  -59.44  -48.66  -48.63  -59.54  -59.44
-   50.85   47.01   46.84   50.72   50.85];
-trap_NL_2=[-48.64  -45.49  -45.26  -48.63  -48.64
-   47.01   47.30   47.17   46.85   47.01];
-trap_NL_3=[  -45.49  -44.95  -44.64  -45.28  -45.49
-   47.30   49.91   49.89   47.17   47.30];
+trap_SLsh_sh=[ -55.9  -56.1  -53  -52.8  -55.9;
+   52 52.3 52.9 52.6 52];
+trap_SLsh_sl=[-53 -50.3 -50.1 -52.8 -53;
+   52.9 53.3 53 52.6 52.9];
 
-trap_boxes=cat(3,trap_DS,trap_NorthLsh_1,trap_NorthLsh_2,trap_MidLsh_1,trap_MidLsh_2,trap_SouthLsh_1,trap_SouthLsh_2,trap_NL_1,trap_NL_2,trap_NL_3);
+trap_NL_sh=[  -59.5  -59.4  -48.6  -48.6  -59.5
+   50.7 50.9 47.1 46.8 50.7];
+trap_NL_fp=[-48.6 -48.6 -45.6 -45.4 -48.6;
+    46.8 47.1 47.5 47.2 46.8];
+trap_NL_fc=[-45.4 -44.1 -44.4 -45.6 -45.4;
+    47.2 49.3 49.5 47.5 47.2];
+
+trap_boxes=cat(3,trap_WGC,trap_DS,trap_NLsh_sl,trap_NLsh_sh,trap_MLsh_sl,trap_MLsh_sh,trap_SLsh_sl,trap_SLsh_sh,trap_NL_fc,trap_NL_fp,trap_NL_sh);
+trap_boxes_names=["trap_WGC","trap_DS","trap_NLsh_sl","trap_NLsh_sh","trap_MLsh_sl","trap_MLsh_sh","trap_SLsh_sl","trap_SLsh_sh","trap_NL_fc","trap_NL_fp","trap_NL_sh"];
 
 % Indicate which box corresponds to which section
-trap_section=[1 2 2 3 3 4 4 5 5 5];
+trap_section=[1 1 2 2 3 3 4 4 5 5 5];
 
 
 % Identify Which drifters goes through the boxes, when they enter and leave
@@ -46,8 +87,8 @@ for i=1:size(trap_boxes,3)
     trapped_leave(i,:)=sum(inpolygon(drift_lon,drift_lat,trap_boxes(1,:,i),trap_boxes(2,:,i)))>0;
     for j=1:size(drift_lon,2)
         if trapped_enter(i,j)>0
-      trapped_time_enter(i,j)=find(inpolygon(drift_lon(:,j),drift_lat(:,j),trap_boxes(1,:,i),trap_boxes(2,:,i)),1,'first');
-      trapped_time_leave(i,j)=find(inpolygon(drift_lon(:,j),drift_lat(:,j),trap_boxes(1,:,i),trap_boxes(2,:,i)),1,'last');
+          trapped_time_enter(i,j)=find(inpolygon(drift_lon(:,j),drift_lat(:,j),trap_boxes(1,:,i),trap_boxes(2,:,i)),1,'first');
+          trapped_time_leave(i,j)=find(inpolygon(drift_lon(:,j),drift_lat(:,j),trap_boxes(1,:,i),trap_boxes(2,:,i)),1,'last');
         end
     end
 end
@@ -57,15 +98,16 @@ end
 % times to define which boxes the drifters entered and left the section
 % from. We also need to pay extra attention that if the drifter circulated
 % several times over the shelf, only one of these is taken into account
-for i=2:max(trap_section) % section 1 only has 1 box
+for i=1:max(trap_section)
     nb_box=find(trap_section==i); % which boxes belong to this section
         for k=1:size(drift_lon,2) % go through all the drifters, for both when they entered and left boxes
-            if sum(trapped_enter(nb_box,k))>1 
+            if sum(trapped_enter(nb_box,k))>1 && i~=1
                 nb_box_trapped=nb_box(trapped_enter(nb_box,k)>0); % which boxes were crossed?
                 % Choose the box that was entered first, while making sure
-                % the drifter comes from upstream
-                time_previous_serie=max(trapped_time_enter(1:min(nb_box)-1,j));
-                if time_previous_serie ~=0
+                % the drifter comes from upstream (except if we're dealing
+                % with origin boxes)
+                time_previous_serie=max(trapped_time_enter(1:min(nb_box)-1,k));
+                if time_previous_serie~=0 
                     [~,idmin]=min(trapped_time_enter(nb_box_trapped(trapped_time_enter(nb_box_trapped,k)>time_previous_serie),k));
                 else
                     [~,idmin]=min(trapped_time_enter(nb_box_trapped,k));
@@ -73,13 +115,13 @@ for i=2:max(trap_section) % section 1 only has 1 box
                 trapped_enter(nb_box_trapped,k)=0;
                 trapped_enter(nb_box_trapped(idmin),k)=1;
             end
-            if sum(trapped_leave(nb_box,k))>1 % If more than one box of the section was crossed, need to check crossing times
+            if sum(trapped_leave(nb_box,k))>1 && i~=5 % If more than one box of the section was crossed, need to check crossing times
                 nb_box_trapped=nb_box(trapped_leave(nb_box,k)>0);
                 time_next_serie=trapped_time_leave(max(nb_box)+1:end,k);
-                time_next_serie=min(time_next_serie(time_next_serie~=0));
+                time_next_serie=min(time_next_serie(time_next_serie~=0)); 
                 % Choose the box that left last, while making sure
                 % the drifter continues downstream
-                if time_next_serie ~=0
+                if time_next_serie~=0
                     [~,idmax]=max(trapped_time_leave(nb_box_trapped(trapped_time_leave(nb_box_trapped,k)<time_next_serie),k));
                 else
                     [~,idmax]=max(trapped_time_leave(nb_box_trapped,k));
@@ -131,10 +173,10 @@ end
 
 % Number of drifter used in pathways method
 total_drift=[];
-for i=1:39
+for i=1:height(res)
 total_drift=[total_drift cell2mat(res.pathid(i))];
 end
 sprintf('Number of drifters used in method: %d',length(unique(total_drift)))
 
 clear time_next_serie time_previous_serie nb_box_trapped nb_box i j k fill_nb idmin idmax id_res traps_totest trapped_enter trapped_leave
-clear trap_DS trap_NorthLsh_1 trap_NorthLsh_2 trap_MidLsh_1 trap_MidLsh_2 trap_SouthLsh_1 trap_SouthLsh_2 trap_NL_1 trap_NL_2 trap_NL_3 
+clear trap_DS trap_NorthLsh_1 trap_NorthLsh_2 trap_MidLsh_1 trap_MidLsh_2 trap_SouthLsh_1 trap_SouthLsh_2 trap_NL_1 trap_NL_fp trap_NL_fc 

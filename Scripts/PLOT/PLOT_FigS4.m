@@ -1,39 +1,35 @@
-%% Figure S5: Pathways between 2 boxes -> Built in the same way as Figure 8
+% Figure S4 is built from the res table in the same way as figure 7: 
 
-% Change parameters to display different combinaisons
-colmap=lines(8);
+box_a_name="trap_NLsh_sh";
+box_b_name="trap_NL_fp";
+box_a=find(trap_boxes_names==box_a_name);
+box_b=find(trap_boxes_names==box_b_name);
 
-serie_1=2;
-serie_2=5;
-col_start=4; % choose color combination
-nb_origin=sum(trap_section==serie_1)
-nb_fate=sum(trap_section==serie_2)
 
-m_proj('lambert','long',[-66 -36],'lat',[41 67.5]);
-for j=1:nb_origin
+% Compute amount and fraction of drifters that flowed between box a and 
+% the section of box b that went through box b
 
-    fig=figure('units','normalized','outerposition',[0 0 .5 1]);
-    hold on
-    m_contour(lonT,latT,topoT,[-5000 -2500 -1000 -500 -250 0],'edgecolor',[.9 .9 .9],'linewidth',1);
-    m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
+% Number of drifters from box_a crossing the section of box_b
+boxes_section=find(trap_section==trap_section(box_b));
 
-    % Plot drifter trajectories
-    trap_origin=find(trap_section==serie_1,1,'first')+j-1;
-    for k=1:nb_fate
-        trap_fate=find(trap_section==serie_2,1,'first')+k-1;
-        drift_id=res.pathid(res.origin==trap_origin & res.fate==trap_fate);
-        m_plot(drift_lon(:,cell2mat(drift_id)),drift_lat(:,cell2mat(drift_id)),'color',brighten(colmap(k+col_start,:),+0.5), 'linewidth',1.2);
-    end
-
-    % plot shelf boundary and boxes
-    m_plot(pts_shelf(1,:),pts_shelf(2,:),'color',[.7 .7 .7],'linewidth',3)
-    for k=1:nb_fate
-        trap_fate=find(trap_section==serie_2,1,'first')+k-1;
-        m_plot(trap_boxes(1,:,trap_fate),trap_boxes(2,:,trap_fate),'color',colmap(k+col_start,:),'linewidth',4)
-    end
-    m_plot(trap_boxes(1,:,trap_origin),trap_boxes(2,:,trap_origin),'color',[.3 .3 .3],'linewidth',3)
-    m_grid('xtick',-80:10:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
-
+nb_path_section=0;
+for i=boxes_section
+    nb_path_section=nb_path_section+res.pathnb(res.origin==box_a & res.fate==i);
 end
 
-clear colmap nb_origin nb_fate serie_1 serie_2 col_start trap_origin fig drift_id j k trap_fate
+% Number of drifters from box_a crossing box_b
+nb_path=res.pathnb(res.origin==box_a & res.fate==box_b)
+
+% Fraction of drifters crossing box b
+frac_path=nb_path/nb_path_section;
+
+
+% Compute median travel time
+speed_path_all=res.speedall(res.origin==box_a & res.fate==box_b);
+speed_path_median=days(median(vertcat(speed_path_all{:})));
+
+sprintf("Number of drifters from box %d to box %d : %d ",box_a,box_b,nb_path)
+sprintf("Percentage of drifters from box %d to section %d crossing box %d : %1.1f percent",box_a,trap_section(box_b), box_b,frac_path*100)
+sprintf("Median travel time from box %d to box %d : %1.1f days",box_a, box_b,speed_path_median)
+
+clear box_a box_b box_a_name box_b_name boxes_section nb_path_section nb_path frac_path speed_path_all

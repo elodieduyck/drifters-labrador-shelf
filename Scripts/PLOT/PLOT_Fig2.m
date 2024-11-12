@@ -5,18 +5,16 @@ area_LSh=[-68 -61 -59 -54 -50 -62 -68;62.5 62.5 57 55 51 51 62.5];
 
 [lonmin, lonmax, latmin, latmax]=deal(-68, -35, 40, 68);
 m_proj('lambert','long',[lonmin,lonmax],'lat',[latmin,latmax]);
-
+color=flipud(pink(7));
 % Drifter data concentration map
 fig2a=figure('units','normalized','outerposition',[0 0 .5 1]);
 [mat,xmid,ymid]=twodhist(drift_lon,drift_lat,[-70:1/3:-30],[40:1/6:70]);
+mat(mat==0)=nan;
 m_pcolor(xmid,ymid,mat)
-colormap(flipud(pink))
+colormap(color(2:end,:)) % Not taking the white, used for 0 points
 hold on
-m_contour(lonT,latT,topoT,[-2000 -1000 -250],'edgecolor',[.7 .7 .7],'linewidth',1);
-m_contour(lonT,latT,topoT,[-1000 -1000],'edgecolor',[.7 .7 .7],'linewidth',2);
-m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
-% m_plot(area_full(1,:),area_full(2,:)) 
-% m_plot(area_LSh(1,:),area_LSh(2,:))
+m_contour(lonT,latT,topoT,[-2500 -1000 -250],'edgecolor',[.7 .7 .7],'linewidth',1);
+m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.7 .7 .7],'edgecolor','none');
 m_plot(pts_shelf(1,:),pts_shelf(2,:),'color',[.8 .8 .8],'linewidth',3)
 m_grid('xtick',-80:10:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 caxis([0 150])

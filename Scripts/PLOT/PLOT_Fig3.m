@@ -4,7 +4,7 @@
 m_proj('lambert','long',[lonmin,lonmax],'lat',[latmin,latmax]);
 
 % Check shelf and distances
-color=lines(2);
+color=lines(8);
 fig3a=figure('units','normalized','outerposition',[0 0 .5 1]);
 hold on
 m_contourf(lonT,latT,topoT,[0 0],'facecolor',[.9 .9 .9],'edgecolor','none');
@@ -23,7 +23,9 @@ colormap(m_colmap('blues',10))
 c=colorbar('location','southoutside','FontSize',15);
 c.Label.String='Depth (km)';
 caxis([-2000 0])
-m_plot(squeeze(trap_boxes(1,:,:)),squeeze(trap_boxes(2,:,:)),'color','m','linewidth',3)
+for i=1:length(trap_boxes)
+    m_plot(squeeze(trap_boxes(1,:,i)),squeeze(trap_boxes(2,:,i)),'color',color(trap_section(i)+1,:),'linewidth',2)
+end
 m_grid('xtick',-80:5:20,'ytick',40:5:85,'tickdir','in','yaxislocation','left','fontsize',15)
 
 clear fig3a fig3b color CS CH c
